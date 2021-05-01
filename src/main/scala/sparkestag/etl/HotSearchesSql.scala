@@ -12,7 +12,7 @@ object HotSearchesSql {
     val lines = sc.textFile("hdfs://namenode:8020/searchlog.sample.txt")
     val row = lines.map(line => {
       var arr = line.split("\t")
-      val str = arr(3) // at index 3 in log.sample.txt: 
+      val str = arr(3) // at index 4 in log.sample.txt: 
                     // [Rank of this URL in search results] and [Click order by user]
       val rank_click = str.split(" ") // above 2 terms are separated by a single space
       Row(rank_click(0).toInt, rank_click(1).toInt) // convert to Int
