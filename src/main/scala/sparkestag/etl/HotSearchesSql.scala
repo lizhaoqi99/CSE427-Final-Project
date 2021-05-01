@@ -29,7 +29,7 @@ object HotSearchesSql {
     val df = ss.createDataFrame(row,structType)
     df.createOrReplaceTempView("tb")
     val re = df.sqlContext.sql("SELECT COUNT(if(t.rank=t.click,1,null)) as hit" +
-      ", COUNT(1) as total FROM tb as t ")
+      ", COUNT(*) as total FROM tb as t ")
     re.show()
     val next = re.toLocalIterator().next()
     val hit = next.getAs[Long]("hit")
